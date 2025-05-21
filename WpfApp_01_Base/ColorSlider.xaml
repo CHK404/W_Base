@@ -17,19 +17,19 @@
         <Label Content="R" Grid.Row="0" FontSize="20" VerticalAlignment="Center" />
         <Slider Minimum="0" Maximum="255" TickFrequency="5" IsSnapToTickEnabled="True"
                 x:Name="Red" Grid.Row="0" Width="700" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                ValueChanged="R_Value" Value="255" />
+                ValueChanged="R_Value" Value="0" />
         <Label x:Name="current_R" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right" Content="0" />
         
         <Label Content="G" Grid.Row="1" FontSize="20" VerticalAlignment="Center" />
         <Slider Minimum="0" Maximum="255" TickFrequency="5" IsSnapToTickEnabled="True"
                 x:Name="Green" Grid.Row="1" Width="700" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                ValueChanged="G_Value" Value="255" />
+                ValueChanged="G_Value" Value="0" />
         <Label x:Name="current_G" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right" Content="0" />
         
         <Label Content="B" Grid.Row="2" FontSize="20" VerticalAlignment="Center" />
         <Slider Minimum="0" Maximum="255" TickFrequency="5" IsSnapToTickEnabled="True"
                 x:Name="Blue" Grid.Row="2" Width="700" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                ValueChanged="B_Value" Value="255" />
+                ValueChanged="B_Value" Value="0" />
         <Label x:Name="current_B" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right" Content="0" />
         
         <GroupBox Header="Color Type" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="750">
