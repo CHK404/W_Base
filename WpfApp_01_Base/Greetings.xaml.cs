@@ -46,7 +46,6 @@ namespace WpfApp_01_Base
             }
             MessageBox.Show(result);
         }
-
         private void radioMale_Checked(object sender, RoutedEventArgs e)
         {
         //   MessageBox.Show("남성을 선택", "라디오 선택 결과");
@@ -55,13 +54,51 @@ namespace WpfApp_01_Base
         {
         //    MessageBox.Show("여성을 선택", "라디오 선택 결과");
         }
-
         //Slider 이벤트 - 실시간 값 변화
         private void volumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if(volumeText != null)
             {
                 volumeText.Text = $"현재 값: {volumeSlider.Value}";
+            }
+        }
+        private void checkBox_Checked(object sender, RoutedEventArgs e)
+        {
+            //체크된 항목들을 문자열로 조합
+            List<string> selectedFruits = new List<string>();
+
+            if (checkBoxApple.IsChecked == true)
+            {
+                selectedFruits.Add("Apple");
+            }
+            if (checkBoxBanana.IsChecked == true)
+            {
+                selectedFruits.Add("Banana");
+            }
+            if (checkBoxOrange.IsChecked == true)
+            {
+                selectedFruits.Add("Orange");
+            }
+
+            //결과 표시
+            textResult.Text = $"선택한 과일: {string.Join(",", selectedFruits)}";
+        }
+
+        private void checkBoxState_Click(object sender, RoutedEventArgs e)
+        {
+            bool? state = checkBoxState.IsChecked;
+
+            if(state == true)
+            {
+                textStatus.Text = "현재 상태: 체크됨(true)";
+            }
+            else if(state == false)
+            {
+                textStatus.Text = "현재 상태: 해제됨(false)";
+            }
+            else
+            {
+                textStatus.Text = "현재 상태: 중간상태(null)";
             }
         }
     }
