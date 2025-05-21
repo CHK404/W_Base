@@ -32,6 +32,38 @@ namespace WpfApp_01_Base
                 MessageBox.Show("Goodbye.");
             }
         }
+
+        private void Button2_Click(object sender, RoutedEventArgs e)
+        {
+            string result = "";
+
+            if (radioMale.IsChecked == true)
+            {
+                result = "남성을 선택했습니다.";
+            } else if(radioFemale.IsChecked == true)
+            {
+                result = "여성을 선택했습니다.";
+            }
+            MessageBox.Show(result);
+        }
+
+        private void radioMale_Checked(object sender, RoutedEventArgs e)
+        {
+        //   MessageBox.Show("남성을 선택", "라디오 선택 결과");
+        }
+        private void radioFemale_Checked(object sender, RoutedEventArgs e)
+        {
+        //    MessageBox.Show("여성을 선택", "라디오 선택 결과");
+        }
+
+        //Slider 이벤트 - 실시간 값 변화
+        private void volumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if(volumeText != null)
+            {
+                volumeText.Text = $"현재 값: {volumeSlider.Value}";
+            }
+        }
     }
 }
 
@@ -94,6 +126,52 @@ namespace WpfApp_01_Base
  * -화면 읽기 전용 텍스트를 표시할 때 사용
  * -사용자가 직접 입력x
  * ->입력은 TextBox에서 가능
+ */
+
+#endregion
+
+#region 5. GroupBox
+
+/*
+ * -여러개의 UI 요소를 하나의 그룹으로 묶어주고 그 그룹에 제목(Label)을 붙일 수 있는 컨테이너
+ * ㄴ관련 힝목들을 시각적으로 묶어 표현할 때 사용
+ */
+
+#endregion
+
+#region 6. RadioButton
+
+/*
+ * 속성
+ * GroupName
+ * ㄴ여러개의 RadioButton이 서로 다른 그룹으로 동작하도록 구분짓는 속성
+ * ㄴ같은 GroupName을 가진 버튼끼리는 서로 하나만 선택 가능
+ * ㄴ다른 GroupName을 부여하면 동시 선택 가능
+ * 
+ * Checked
+ * -라디오 버튼이 선택 될 때 연결되는 이벤트 핸들러
+ * 
+ * IsChecked
+ * -현재 체크 상태를 코드로 확인할 때 사용
+ */
+
+#endregion
+
+#region 7. Slider
+
+/*
+ * -사용자가 드래그하거나 클릭해 숫자 값을 조절할 수 있게 해주는 입력 컨트롤
+ * ex) 음량, 밝기, 비율 등을 조절할 때 사용
+ * 
+ * 속성
+ * -Minimum: 최소 값(기본 0)
+ * -Maximum: 최대 값(기본 10)
+ * -Value: 현재 값(기본 0)
+ * -Orientation: 방향 설정
+ * -TickFrequency: 눈금 간격
+ * -IsSnapToTickEnabled: 눈금에 맞춰지게 할지 여부
+ * -Ticks: 눈금 위치를 직접 설정(배열처럼)
+ * ㄴ특별한 위치에만 눈금이 필요할 때
  */
 
 #endregion

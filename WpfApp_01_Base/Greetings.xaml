@@ -14,7 +14,7 @@
         <!--Grid: 기본 UI 레이아웃 컨테이너-->
         <!--1. Tab Control-->
         <TabControl>
-            <!--첫번째 탭-->
+            <!--첫 번째 탭-->
             <TabItem Header="학생 정보">
                 <StackPanel Margin="10">
                     <TextBlock Text="이름: 홍길동"></TextBlock>
@@ -22,7 +22,7 @@
                 </StackPanel>
             </TabItem>
 
-            <!--두번째 탭-->
+            <!--두 번째 탭-->
             <TabItem Header="Grid">
                 <Grid>
                     <!--행과 열 정보 (미리)선언-->
@@ -47,6 +47,40 @@
                     <!--Grid.RowSpan: 여러 행에 걸쳐 배치할 때(행 병합)-->
                     <!--Grid.ColumnSpan: 여러 열에 걸쳐 배치할 때(열 병합)-->
                 </Grid>
+            </TabItem>
+            <!--세 번째 탭-->
+            <TabItem Header="GroupBox" HorizontalAlignment="Right" Margin="0,-2,-2,0" Width="70">
+                <GroupBox Header="사용자 정보" Margin="10">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="이름: " />
+                        <TextBox Width="200" />
+                        <TextBlock Text="나이: " />
+                        <TextBox Width="200" />
+
+                        <TextBlock Text="성별을 선택하세요: " FontSize="14" Margin="0, 0, 0, 10" />
+                        <!--RadioButton 그룹-->
+                        <RadioButton x:Name="radioMale" Content="남성" GroupName="gender" IsChecked="True" Margin="0,0,0,5" Checked="radioMale_Checked" />
+
+                        <RadioButton x:Name="radioFemale" Content="여성" GroupName="gender" IsChecked="True" Margin="0,0,0,15" Checked="radioFemale_Checked" />
+
+                        <Button Content="확인" Click="Button2_Click"/>
+                    </StackPanel>
+                </GroupBox>
+            </TabItem>
+            <!--네 번째 탭-->
+            <TabItem Header="Slider">
+                <StackPanel Margin="20">
+                    <TextBlock Text="Volume: " FontSize="14" Margin="0,0,0,10"/>
+                    <Slider Minimum="0" Maximum="100" Value="50" />
+                    <Slider Minimum="0" Maximum="100" TickFrequency="20" IsSnapToTickEnabled="True" />
+
+                    <StackPanel Margin="20">
+                        <Slider x:Name="volumeSlider" Minimum="0" Maximum="100" Value="50" 
+                                TickFrequency="10" IsSnapToTickEnabled="True" TickPlacement="BottomRight" Width="200"
+                                ValueChanged="volumeSlider_ValueChanged" Ticks="0, 30, 50, 90"/>
+                        <TextBlock x:Name="volumeText" FontSize="20" Margin="10" />
+                    </StackPanel>
+                </StackPanel>
             </TabItem>
         </TabControl>
     </Grid>
