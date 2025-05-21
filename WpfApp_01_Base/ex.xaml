@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp_01_Base"
       mc:Ignorable="d"
-      Title="ex" Height="270" Width="590">
+      Title="ex" Height="172" Width="423">
     <Grid>
         <Grid.RenderTransform>
             <TransformGroup>
@@ -29,8 +29,8 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="1" Grid.Column="0" Text="아이디: " Margin="5"/>
         <TextBlock Grid.Row="2" Grid.Column="0" Text="비밀번호: " Margin="5"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" x:Name="ID_I" Width="500" HorizontalAlignment="Center" Height="25"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="5" x:Name="PW_I" Width="500" HorizontalAlignment="Center" Height="25"/>
-        <Button Grid.Row="3" Grid.Column="1" Margin="155,15,0,-5" Content="로그인" Click="Button_Click" HorizontalAlignment="Left" Width="100" Height="25" RenderTransformOrigin="-2.39,0.754"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" x:Name="ID_I" Width="200" HorizontalAlignment="Center" Height="25"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="5" x:Name="PW_I" Width="200" HorizontalAlignment="Center" Height="25"/>
+        <Button Grid.Row="3" Grid.Column="1" Margin="91,15,0,-5" Content="로그인" Click="Button_Click" HorizontalAlignment="Left" Width="97" Height="25" RenderTransformOrigin="-2.39,0.754"/>
     </Grid>
 </Window>
