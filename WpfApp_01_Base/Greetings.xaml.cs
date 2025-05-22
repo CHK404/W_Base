@@ -19,6 +19,19 @@ namespace WpfApp_01_Base
         public MainWindow()
         {
             InitializeComponent();
+
+            //10. ListBox - Data Binding
+            //2) 데이터 리스트 생성
+            List<Animals> animals = new List<Animals>()
+            {
+                new Animals { Name = "Hippo", Percent = 10},
+                new Animals { Name = "Ostrich", Percent = 90},
+                new Animals { Name = "Rabbit", Percent = 50}
+            };
+
+            //3) ListBox에 데이터 바인딩
+            //-ListBox는 animals 리스트의 항목 개수만큼 줄을 만들어 화면에 표시
+            listBox.ItemsSource = animals;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -100,6 +113,89 @@ namespace WpfApp_01_Base
             {
                 textStatus.Text = "현재 상태: 중간상태(null)";
             }
+        }
+
+        private void comboFruits_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //선택된 항목 가져오기
+            ComboBoxItem selectedItem = comboFruits.SelectedItem as ComboBoxItem;
+
+            /*
+             * -WPF에서 사용되는 모든 컨트롤 요소들은 전부 "클래스" 
+             * ex)
+             * ComboBox.Item item = new ComboBoxItem();
+             * item.Content = "Apple";
+             * 
+             * comboFruits.SelectedItem
+             * -사용자가 선택한 항목 가져오기
+             * -사용자가 선택한 항목(SelectedItem)은 ComboBoxItem 타입의 객체
+             * 
+             * as 연산자
+             * -안전하게 형변환 할 수 있게 도와주는 키워드
+             * -형변환에 실패시 'null' 반환
+             * 
+             * as ComboBoxItem
+             * -이 항목이 실제로 ComboBoxItem 타입인지 확인하고
+             * 맞을 시 그 타입으로 변환해서 selectedItem에 넣어줌
+             */
+
+            if (selectedItem != null)
+            {
+                string selectedText = selectedItem.Content.ToString();
+                //selectedItem은 ComboBoxItem 클래스의 인스턴스
+                //그 안에 있는 Content 속성 => object 타입
+
+                textResult2.Text = $"선택한 과일: {selectedText}";
+            }
+        }
+
+        //10. ListBox 예제
+        private void listColors_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBoxItem selected = listColors.SelectedItem as ListBoxItem;
+            
+            if (selected != null)
+            {
+                string selectedText = selected.Content.ToString();
+                textSelected.Text = $"선택한 색상: {selectedText}";
+            }
+        }
+
+        //다중 선택
+        private void listFruits_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            List<string> selectedFruits = new List<string>();
+
+            foreach (ListBoxItem item in listFruits.SelectedItems)
+            {
+                selectedFruits.Add(item.Content.ToString());
+            }
+            textSelected.Text = $"선택한 과일: {string.Join(", ", selectedFruits)}";
+        }
+
+        //10. ListBox - Data Binding
+        //1) 데이터 바인딩용 클래스 정의
+        public class Animals
+        {
+            public string Name {  get; set; }
+            public int Percent {  get; set; }
+        }
+
+        private void btnNaver_Click(object sender, RoutedEventArgs e)
+        {
+            WebBrowser1.Navigate("https://www.naver.com");
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (WebBrowser1.CanGoBack)
+                WebBrowser1.GoBack();
+        }
+
+        private void btnForward_Click(object sender, RoutedEventArgs e)
+        {
+            if(WebBrowser1.CanGoForward)
+                WebBrowser1.GoForward();
         }
     }
 }
@@ -209,6 +305,100 @@ namespace WpfApp_01_Base
  * -IsSnapToTickEnabled: 눈금에 맞춰지게 할지 여부
  * -Ticks: 눈금 위치를 직접 설정(배열처럼)
  * ㄴ특별한 위치에만 눈금이 필요할 때
+ */
+
+#endregion
+
+#region 8. CheckBox
+
+/*
+ * -여러 항목을 복수 선택 가능하게 할 때 사용
+ * 
+ * 속성
+ * -IsChecked: true, false, null 값을 가지는 bool 타입 / 체크 여부를 나타냄
+ * -Checked: 체크되었을 때 발생하는 이벤트
+ * -UnChecked
+ * -Indeterminate: 중간 상태일 때 발생하는 이벤트
+ * -IsThreeState: true로 설정하면 중간 상태까지 허용 (기본값 : false)
+ */
+
+#endregion
+
+#region 9. ComboBox
+
+/*
+ * -드롭다운 목록에서 항목을 하나 선택할 수 있게 해주는 컨트롤
+ * -사용자는 미리 정의된 목록 중 하나를 선택하거나, 필요 시 직접 입력도 가능
+ * 
+ * 속성
+ * -Items: 콤보박스에 표시할 항목 목록
+ * -SelectedItem: 현재 선택된 항목 객체(보통 문자열)
+ * -SelectedIndex: 선택된 항목의 인덱스 번호(0부터 시작)
+ * -IsEditable: true면 사용자가 직접 입력 가능
+ * -SelectedValue: 지정된 항목의 속성값
+ */
+
+#endregion
+
+#region 10. ListBox
+
+/*
+ * -여러 개의 항목들을 목록 형태로 나열해 보여주고
+ *  사용자가 항목을 하나 이상 선택 가능하게 하도록 해주는 컨트롤
+ * -ComboBox: 펼쳐지는 드롭다운(공간 절약)
+ * -ListBox: 펼쳐진 채 보임(한눈에 보기 좋음)
+ * 
+ * 속성
+ * -Items: 항목을 직접 추가할 수 있음
+ * -ItemsSource: 외부 데이터 리스트를 바인딩 할 수 있음
+ * -SelectedItem: 현재 선택된 항목(기본 단일 선택)
+ * -SelectedItems: 다중 선택 모드에서 선택된 모든 항목들
+ * -SelectionMode: 선택 방식(Single, Multiple, Extended)
+ * 
+ * 이벤트
+ * -SelectionChanged: 항목이 선택되거나 해제될 때 발생하는 이벤트
+ */
+
+/*
+ * 데이터 바인딩 설명
+ * 1) ItemsSource
+ * -ListBox, ComboBox 처럼 여러 항목을 보여주는 컨트롤에 데이털르 바인딩(연결) 해주는 속성
+ * -역할: 연결한 리스트의 각 항목이 ListBox 안에 자동으로 하나씩 표시
+ * 
+ * 2) ItemTemplate
+ * -ListBox, ComboBox 등 목록 컨트롤에서 각 항목  하나를 어떻게 보여줄 지 정의하는 템플릿
+ * 
+ * 3) DataTemplate
+ * -ItemTemplate의 속성
+ * -ListBox에서 각 항목이 어떻게 보일지 정의하는 템플릿
+ * -기본적으로 항목이 ToString()값으로 표시되지만
+ *  DataTemplate를 사용하면 항목마다 원하는 UI 요소(TextBlock, ProgressBar, Image 등)를 조합해서 보여줄 수 있음
+ *  
+ * 4) Binding Name
+ * -바인딩된 데이터의 Name 속성값을 UI에 표시
+ * 
+ * 5) Binding Percent
+ * -바인딩되 데이터의 Percent 값을 꺼내 ProgressBar의 Value로 넣는 것
+ */
+
+#endregion
+
+#region 11. Web Browser
+
+/*
+ * -WPF에서 제공하는 웹 페이지를 보여주는 컨트롤
+ * -Internet Explorer (IE) 웹 엔진을 기반(2022년 이후로 지원 중지)
+ * 
+ * -Edge 기반 WebView2를 사용하는게 더 좋다
+ * 
+ * 쓰는 이유
+ * -프로그램 안에서 웹 페이지를 가볍게 보여주고 싶을 때
+ * 
+ * 속성
+ * -Navigate(string url): 지정한 웹 주소로 이동
+ * -GoBack(): 뒤로 이동
+ * -GoFoward(): 앞으로 이동
+ * -Refresh(): 현재 페이지 새로고침
  */
 
 #endregion

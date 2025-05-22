@@ -93,6 +93,61 @@
                     <TextBlock x:Name="textStatus" FontSize="26" Margin="10" />
                 </StackPanel>
             </TabItem>
+            <!--여섯 번째 탭-->
+            <TabItem Header="ComboBox">
+                <StackPanel Margin="20">
+                    <TextBlock Text="Select Fruits: " FontSize="26" Margin="0,0,0,5" />
+                    <ComboBox x:Name="comboFruits" Width="200" Height="100" SelectionChanged="comboFruits_SelectionChanged">
+                        <ComboBoxItem Content="Apple" />
+                        <ComboBoxItem Content="Banana" />
+                        <ComboBoxItem Content="Orange" />
+                    </ComboBox>
+                    <TextBlock x:Name="textResult2" FontSize="26" Margin="10" />
+                </StackPanel>
+            </TabItem>
+            <!--일곱 번째 탭-->
+            <TabItem Header="ListBox">
+                <StackPanel Margin="20">
+                    <TextBlock Text="Favored Color: " FontSize="26" Margin="0,0,0,5" />
+                    <ListBox x:Name="listColors" Height="100" Width="200" SelectionChanged="listColors_SelectionChanged">
+                        <ListBoxItem Content="Red" />
+                        <ListBoxItem Content="Green" />
+                        <ListBoxItem Content="Blue" />
+                    </ListBox>
+                    <TextBlock x:Name="textSelected" FontSize="26" Margin="10" />
+                    <ListBox x:Name="listFruits" SelectionMode="Multiple" SelectionChanged="listFruits_SelectionChanged">
+                        <ListBoxItem Content="Apple" />
+                        <ListBoxItem Content="Banana" Selected="ListBoxItem_Selected" />
+                        <ListBoxItem Content="Orange" />
+                        <ListBoxItem Content="Grape" />
+                    </ListBox>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Data Binding">
+                <ListBox x:Name="listBox">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0, 2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding Name}" />
+                                <ProgressBar Grid.Column="1" Minimum="0" Maximum="100" Height="30" Margin="0,0,0,5" Value="{Binding Percent}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </TabItem>
+            <TabItem Header="Web">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <WebBrowser x:Name="WebBrowser1" />
+                    <Button x:Name="btnNaver" Content="Naver" Width="100" Margin="0,0,10,0" Click="btnNaver_Click" />
+                    <Button x:Name="btnBack" Content="Back" Width="100" Margin="0,0,10,0" Click="btnBack_Click" />
+                    <Button x:Name="btnForward" Content="Forward" Width="100" Margin="0,0,10,0" Click="btnForward_Click" />
+                </StackPanel>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
